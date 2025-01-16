@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option go_package = "../pb";
+
+service VisitorCounterService {
+    rpc IncrementVisitorCount (IncrementVisitorCountRequest) returns (google.protobuf.Empty) {}
+    rpc GetVisitorCounts (google.protobuf.Empty) returns (GetVisitorCountResponse) {}
+}
+
+message IncrementVisitorCountRequest {
+    string ip_addr = 1;
+}
+
+message GetVisitorCountResponse {
+    map<string, int64> visitor_counts = 1;
+}
